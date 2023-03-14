@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Type Ahead 👀</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="https://fav.farm/🔥" />
 </head>
 <body>
@@ -17,6 +17,23 @@
   </form>
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+
+const cities = [];
+//feth will return a promise
+// .then will fetch a blob of data
+// now this blob of data needs to be converted to json 
+// so .json() is used to convert the data with then again returs a promise
+// again then which fetch a blob of data 
+// Now this data needs to be pushed to the cities array
+// but the problem would be this would cities.push would push the data into a single index of a Array 
+// cities.push(data) would be not a suitable option 
+// here the length would be 1 and the 1st index size would be 1000
+// so to avoid this spread operator is used so this would spread the main array into 1000 length
+fetch(endpoint)
+    .then(blob => blob.json())
+    .then(data => cities.push(...data))
+
+console.log(cities)
 
 </script>
 </body>
